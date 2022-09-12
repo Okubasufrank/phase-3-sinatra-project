@@ -26,17 +26,7 @@ class ApplicationController < Sinatra::Base
   #   result.to_json
   # end
 
-  post '/api/v1/businesses' do
-    business = Business.create(
-      name: params[:name],
-      image_url: params[:image_url],
-      description: params[:description],
-      category_id: params[:category_id],
-      services: params[:services],
-      rating: params[:rating]
-    )
-    business.to_json
-  end
+ 
 
   get '/api/v1/businesses' do
     businesses = Business.all.collect do |business|
@@ -86,6 +76,18 @@ class ApplicationController < Sinatra::Base
 
       {token: token}.to_json
     end
+  end
+
+   post '/api/v1/businesses' do
+    business = Business.create(
+      name: params[:name],
+      image_url: params[:image_url],
+      description: params[:description],
+      category_id: params[:category_id],
+      services: params[:services],
+      rating: params[:rating]
+    )
+    business.to_json
   end
 
   post '/api/v1/signup' do
