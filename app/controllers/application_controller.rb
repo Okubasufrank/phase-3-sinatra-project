@@ -146,16 +146,6 @@ class ApplicationController < Sinatra::Base
     businesses.to_json
   end
 
-  post '/api/v1/reviews/:user_id/:business_id' do
-    review = Review.create(
-      comment: params[:comment],
-      rate: params[:rate],
-      user_id: params[:user_id],
-      business_id: params[:business_id]
-    )
-    review.to_json
-  end
-
   get '/api/v1/reviews' do
     reviews = Review.all().map do |review|
       {
