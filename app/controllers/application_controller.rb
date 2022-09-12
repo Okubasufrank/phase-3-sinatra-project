@@ -26,23 +26,6 @@ class ApplicationController < Sinatra::Base
   #   result.to_json
   # end
 
- 
-
-  get '/api/v1/businesses' do
-    businesses = Business.all.collect do |business|
-      {
-        id: business[:id],
-        name: business[:name],
-        image_url: business[:image_url],
-        description: business[:description],
-        category_id: business.category,
-        services: business[:services],
-        rating: business[:rating],
-        reviews: business.reviews
-      }
-    end
-    businesses.to_json
-  end
 
   delete '/api/v1/businesses/:business_id' do
     business = Business.find_by(id: params[:business_id])
@@ -145,6 +128,22 @@ class ApplicationController < Sinatra::Base
 
       {token: token}.to_json
     end
+  end
+
+    get '/api/v1/businesses' do
+    businesses = Business.all.collect do |business|
+      {
+        id: business[:id],
+        name: business[:name],
+        image_url: business[:image_url],
+        description: business[:description],
+        category_id: business.category,
+        services: business[:services],
+        rating: business[:rating],
+        reviews: business.reviews
+      }
+    end
+    businesses.to_json
   end
 
   post '/api/v1/reviews/:user_id/:business_id' do
