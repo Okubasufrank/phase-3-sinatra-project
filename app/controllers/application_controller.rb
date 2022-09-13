@@ -5,8 +5,8 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
       {
-        "businesses": "https://biashara-api.herokuapp.com/api/v1/businesses",
-        "categories": "https://biashara-api.herokuapp.com/api/v1/categories",
+        "businesses": "https://biashara-app.herokuapp.com/api/v1/businesses",
+        "categories": "https://biashara-app.herokuapp.com/api/v1/categories",
       }.to_json
   end
 

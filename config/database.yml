@@ -1,20 +1,23 @@
 #   Ensure the posgresql gem is defined in your Gemfile
 #   gem 'pg'
 
-default: &default
+  default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
-  <<: *default
-  url: "postgresql://user:password@localhost:5432/database_name"
+  adapter: sqlite3
+  database: db/development.sqlite3
 
 test:
   <<: *default
-  url: "postgresql://user:password@localhost:5432/test_database_name"
+  database: db/test.sqlite3
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
-  
+  database: db/production.sqlite3
+  host: ec2-44-209-158-64.compute-1.amazonaws.com
+  database: ddr7as1tl9u7sq
+  user: vnjhjgtzmtqwqe
+  port: 5432
